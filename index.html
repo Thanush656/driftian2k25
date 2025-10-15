@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- 3D Model Viewer Script -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #10b981; /* Emerald 500 */
+            --secondary-color: #3b82f6; /* Blue 500 */
+            --bg-dark: #1f2937; /* Gray 800 */
+            --bg-light: #f9fafb; /* Gray 50 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--bg-light);
+            scroll-behavior:smooth;
+            /* Add your background image here */
+            background-image: url('background7.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .section-title {
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 2.25rem; /* 3xl */
+            font-weight: 700; /* bold */
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 9999px;
+        }
+        /* Scroll Animation Classes */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.10s ease-out, transform 0.10s ease-out;
+        }
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class=" backdrop-blur-sm sticky top-0 z-50 shadow-lg scroll-animate">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-extrabold tracking-wider text-emerald-500">
+                        <img src="logo.png" class="h-20 w-auto" alt="" >
+                    </span>
+                    <!-- <span>Driftian</span> -->
+                </div>
+                <div class="hidden sm:hidden md:flex items-center space-x-4">
+                    <a href="#home" class=" hover:bg-red-600 text-black font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 ">Home</a>
+                    <a href="#events" class="hover:bg-red-600 text-black font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">Events</a>
+                    <a href="#about" class="hover:bg-red-600 text-black font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">About</a>
+                    <a href="#gallery" class="hover:bg-red-600 text-black font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">Gallery</a>
+                    <a href="#contact" class="hover:bg-red-600 text-black font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">Contact Us</a>
+                    <button id="registerButton" class="bg-red-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">Register</button>
+                </div>
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="md:hidden text-black hover:text-black focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden backdrop-blur-sm">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition duration-150">Home</a>
+                <a href="#events" class="text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition duration-150">Events</a>
+                <a href="#about" class="text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition duration-150">About</a>
+                <a href="#gallery" class="text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition duration-150">Gallery</a>
+                <a href="#contact" class="text-black hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition duration-150">Contact Us</a>
+                <button class="w-full text-center bg-red-500 hover:bg-blue-500 text-black font-semibold py-2 px-3 rounded-lg mt-2 transition duration-150" onclick="document.getElementById('registerModal').classList.remove('hidden')">Register</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+        <!-- Hero Section -->
+        <section id="home" class="text-center pt-8 pb-16 md:pt-12 md:pb-24">
+            <div class="flex justify-center mb-6 scroll-animate">
+                <div class=" w-full max-w-2xl h-96 md:h-[30rem] flex items-center justify-center">
+                    <img src="logo4.png" alt="Driftian Logo" class="max-w-full max-h-full object-contain">
+                </div>
+            </div>
+            
+            <!-- <p class="text-red-500 text-xl  mb-8">Nellai College of Engineering</p> -->
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-black mb-4 leading-tight scroll-animate">
+                <span class="block text-500 text-2xl mt-2 font-normal">Event Begins In</span>
+            </h1>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <!-- Countdown Timer -->
+                <div class="backdrop-blur-sm p-6 rounded-xl shadow-2xl w-full sm:w-1/6 text-center hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                    <h2 class="text-xl font-semibold mb-4 text-black">Event Date</h2>
+                    <p class="text-sm font-bold text-black">Oct 10,2025</p>
+                </div>
+                <div class="backdrop-blur-sm p-6 rounded-xl shadow-2xl w-full sm:w-1/6 text-center hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                    <h2 class="text-xl font-semibold mb-4 text-black">Venue</h2>
+                    <p class="text-sm font-bold text-black">NCE</p>
+                </div>
+                <div class="backdrop-blur-sm p-6 rounded-xl shadow-2xl w-full sm:w-1/6 text-center hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                    <h2 class="text-xl font-semibold mb-4 text-black">National</h2>
+                    <p class="text-sm font-bold text-black">Level</p>
+                </div>
+                <div class="backdrop-blur-sm p-6 rounded-xl shadow-2xl w-full sm:w-1/6 text-center hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                    <h2 class="text-xl font-semibold mb-4 text-black">Department</h2>
+                    <p class="text-sm font-bold text-black">CSE</p>
+                </div>
+            </div>
+
+            <div class="mt-12 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 scroll-animate">
+                <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105" onclick="document.getElementById('registerModal').classList.remove('hidden')">
+                    <span class="mr-2">Register Now</span>
+                    <svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </button>
+                <a href="placeholder_brochure.pdf" target="_blank" class="bg-gray-700/80 hover:bg-gray-600/80 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 inline-flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Download Brochure
+                </a>
+            </div>
+            <div class="flex justify-center mb-6 mt-20">
+                <img class="w-[500px] h-1/8" src="Nellai.png" alt="Nellai College of Engineering">
+            </div>
+            <h1 class="text-3xl text-black">National Level Symposium</h1>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="py-16 md:py-20">
+            <!-- <h2 class="section-title text-white scroll-animate">Events</h2> -->
+            <h2 class="section-title text-black scroll-animate mt-8">Technical Events</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Event Card 1: Paper Presentation -->
+                <div class="backdrop-blur-sm  p-6 rounded-xl shadow-lg border-t-4 border-emerald-500 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                    <div class="flex items-center mb-4 justify-center">
+                        <div class="p-3  rounded-full text-center mr-4">
+                            <img src="PPT.png" alt="Paper Presentation Icon" class="w-16 h-16  mx-auto">
+                             <!-- Pitch Your Paper logo placeholder -->
+                             <h3 class="text-xl font-bold text-black ">Tech Talks [Paper Presentation]</h3>
+                        </div>
+                    </div>
+                    <div class="text-center text-black">
+                     <p>Participants are required to present a paper on any technical topic of their choice.
+                       <p>Team Size: Maximum 3 members</p> 
+                        Duration: 10 minutes (including Q&A, if any)</p>
+                    <button class="event-details-btn text-black font-semibold hover:text-red-500 transition duration-300"
+                        data-title="Paper Presentation">Details &rarr;</button>
+                    </div>
+                </div>
+                     <!-- Event Card 2: quiz -->
+                <div class="backdrop-blur-sm  p-6 rounded-xl shadow-lg border-t-4 border-emerald-500 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                    <div class="flex items-center mb-4 justify-center">
+                        <div class="p-3 rounded-full text-center mr-4">
+                            <img src="quiz.png" alt="Quiz Icon" class="w-16 h-16 mx-auto">
+                             <!-- Pitch Your Paper logo placeholder -->
+                             <h3 class="text-xl font-bold text-black ">Thinkathon [Quiz]</h3>
+                        </div>
+                    </div>
+                    <div class="text-center text-black">
+                     <p>A general technology-based quiz covering a wide range of topics.
+                        <p>Participation: Individual</p>
+                        <p>Duration: 10 minutes</p>
+                        Format: 15 Questions</p> 
+                    <button class="event-details-btn text-black font-semibold hover:text-red-500 transition duration-300"
+                        data-title="Quiz">Details &rarr;</button>
+                    </div>
+                </div>
+                <!-- evevt card 3 : bughunt -->
+                <div class="backdrop-blur-sm  p-6 rounded-xl shadow-lg border-t-4 border-emerald-500 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                    <div class="flex items-center mb-4 justify-center">
+                        <div class="p-3  rounded-full mr-4">
+                            <img src="debbuging.png" alt="Paper Presentation Icon" class="w-16 h-16  mx-auto">
+                             <!-- Pitch Your Paper logo placeholder -->
+                             <h3 class="text-xl font-bold text-black ">Bughunt</h3>
+                        </div>
+                    </div>
+                    <div class="text-center text-black">
+                     <p>Participants will be given Python programs with bugs.The task is to identify and fix the issues 
+                        <p>Participation: Individual</p>
+                         Duration: 20 minutes</p>
+                    <button class="event-details-btn text-black font-semibold hover:text-red-500 transition duration-300"
+                        data-title="Bughunt">Details &rarr;</button>
+                    </div>
+                </div>
+                <!-- evevt card 4 : brainwave -->
+                <div class="backdrop-blur-sm  p-6 rounded-xl shadow-lg border-t-4 border-emerald-500 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                    <div class="flex items-center mb-4 justify-center">
+                        <div class="p-3  rounded-full mr-4">
+                            <img src="brain.png" alt="Paper Presentation Icon" class="w-16 h-16  mx-auto">
+                             <!-- Pitch Your Paper logo placeholder -->
+                             <h3 class="text-xl font-bold text-black ">BrainWave</h3>
+                        </div>
+                    </div>
+                    <div class="text-center text-black">
+                     <p>Challenge your mind with aptitude and reasoning questions.
+                         <p>Participation: Individual</p>
+                         <p>Format: 10 Questions</p>
+                        Duration: 15 minutes
+                        </p>
+                    <button class="event-details-btn text-black font-semibold hover:text-red-500 transition duration-300"
+                        data-title="BrainWave">Details &rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title text-black scroll-animate mt-16">Non-Technical Events</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- event card -1 : dance -->
+                <div class="backdrop-blur-sm  p-6 rounded-xl shadow-lg border-t-4 border-emerald-500 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                    <div class="flex items-center mb-4 justify-center">
+                        <div class="p-3  rounded-full mr-4">
+                            <img src="dance.png" alt="Paper Presentation Icon" class="w-16 h-16  mx-auto">
+                             <!-- Pitch Your Paper logo placeholder -->
+                             <h3 class="text-xl font-bold text-black ">Danceverse</h3>
+                        </div>
+                    </div>
+                    <div class="text-center text-black">
+                     <p>Show off your talent in a high-energy dance event!
+                     <p>Participation: Individual or Group[Max 5 Person]</p>
+                        Duration: 5 minutes</p>
+                    <button class="event-details-btn text-black font-semibold hover:text-red-500 transition duration-300"
+                        data-title="Dance">Details &rarr;</button>
+                    </div>
+                </div>
+                <!-- enent card-2 potography -->
+                <div class="backdrop-blur-sm  p-6 rounded-xl shadow-lg border-t-4 border-emerald-500 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                    <div class="flex items-center mb-4 justify-center">
+                        <div class="p-3  rounded-full mr-4">
+                            <img src="photo.png" alt="Paper Presentation Icon" class="w-16 h-16  mx-auto">
+                             <!-- Pitch Your Paper logo placeholder -->
+                             <h3 class="text-xl font-bold text-black ">PixelHunt [Photography]</h3>
+                        </div>
+                    </div>
+                    <div class="text-center text-black">
+                     <p>Capture the beauty of your college campus or nature and submit your best shot.
+                        <p>Theme: College Nature / Campus</p>
+                        Submission Deadline: Before 1:00 PM</p>
+                    <button class="event-details-btn text-black font-semibold hover:text-red-500 transition duration-300"
+                        data-title="Photography">Details &rarr;</button>
+                    </div>
+                </div>
+                <!-- event card-3 : connection -->
+                <div class="backdrop-blur-sm  p-6 rounded-xl shadow-lg border-t-4 border-emerald-500 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                    <div class="flex items-center mb-4 justify-center">
+                        <div class="p-3  rounded-full mr-4">
+                            <img src="connection.png" alt="Paper Presentation Icon" class="w-16 h-16  mx-auto">
+                             <!-- Pitch Your Paper logo placeholder -->
+                             <h3 class="text-xl font-bold text-black ">connection</h3>
+                        </div>
+                    </div>
+                    <div class="text-center text-black">
+                     <p>A fun movie guessing game using visual hints shown in picture slides.
+                        Team Size: 3 members per group</p>
+                    <button class="event-details-btn text-black font-semibold hover:text-red-500 transition duration-300"
+                        data-title="Connection">Details &rarr;</button>
+                    </div>
+                </div>
+            </div>
+
+             <!-- General Instructions -->
+            <div class="mt-16 backdrop-blur-sm p-8 rounded-xl shadow-inner  border-gray-700 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                <h3 class="text-2xl font-bold text-emerald-500 mb-4">General Instructions</h3>
+                <ul class="space-y-3 text-black list-disc list-inside">
+                    <li>A valid college ID card is **mandatory** for registration and participation.</li>
+                    <li>Registration fee: **Rs.200/- per participant**</li>
+                    <li>Team size: **1-4 members** (may vary according to events).</li>
+                    <li>All participants must register before the deadline specified by the organizers (**28.10.25**).</li>
+                    <li>Judges' decision will be the final authority.</li>
+                    <li>Certificate will be provided as hard copy to all participants.</li>
+                    <li>Lunch and a registration kit will be provided.</li>
+                    <!-- <li>On-Spot registration will be available based on slot availability.</li> -->
+                </ul>
+            </div>
+        </section>
+        <!-- About Section -->
+        <section id="about" class="py-16 md:py-24">
+            <h2 class="section-title text-black scroll-animate">About The Department</h2>
+            <div class="grid grid-cols-1 gap-8 backdrop-blur-sm p-8 rounded-xl shadow-xl border border-gray-700 scroll-animate">
+                <div>
+                    <h3 class="text-2xl font-bold text-black mb-3">Our Vision</h3>
+                    <p class="text-black">To excel in the field of Computer Science engineering and to develop highly competent technocrats with global intellectual qualities.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-black mb-3">Our Mission</h3>
+                    <ul class="space-y-3 text-black list-disc list-inside ml-4">
+                        <li>To educate the students with the state-of-the-art technologies to compete internationally.</li>
+                        <li>To enable students to produce creative solutions to the society's needs.</li>
+                        <li>To be conscious of universal moral values and adhere to the professional ethical code.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-16 md:py-24">
+            <h2 class="section-title text-black scroll-animate">Gallery</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="scroll-animate flex justify-center">
+                    <img src="gallery1.jpg" class="h-48 w-full max-w-sm object-cover rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2" alt="Symposium Hall">
+                </div>
+                <div class="scroll-animate flex justify-center">
+                    <img src="gallery2.jpg" class="h-48 w-full max-w-sm object-cover rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2" alt="Symposium Hall">
+                </div>
+                <div class="scroll-animate flex justify-center">
+                    <img src="gallery3.jpg" class="h-48 w-full max-w-sm object-cover rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2" alt="Symposium Hall">
+                </div>
+                <div class="scroll-animate flex justify-center">
+                    <img src="gallery4.jpg" class="h-48 w-full max-w-sm object-cover rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2" alt="Symposium Hall">
+                </div>
+            </div>
+        </section>
+        <!-- Contact and Coordinators Section -->
+        <section id="contact" class="py-16 md:py-24">
+            <h2 class="section-title text-black scroll-animate">Meet the Team</h2>
+            <!-- Coordinators Grid -->
+            <div class="backdrop-blur-sm p-8 rounded-xl shadow-xl border-gray-700 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2">
+                <h3 class="text-3xl font-bold text-black mb-6">Convenors</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 scroll-animate">
+                    <!-- Convenor 1 -->
+                    <div class="text-center hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2">
+                        <div>
+                            <img src="principle.png" class="w-32 h-32 mx-auto bg-gray-700 rounded-full mb-3 flex items-center justify-center text-gray-400" alt="">
+                        </div>
+                        <p class="font-bold text-black">Dr.S. MALIK RAJ</p>
+                        <p class="text-sm text-emerald-500">PRINCIPAL</p>
+                    </div>
+                    <!-- Convenor 2 -->
+                    <div class="text-center hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                        <img src="Hod.JPG" class="w-32 h-32 mx-auto bg-gray-700 rounded-full mb-3 flex items-center justify-center text-gray-400">Photo</img>
+                        <p class="font-bold text-black">Mrs. PITCHAMMAL G</p>
+                        <p class="text-sm text-red-500">HOD-CSE</p>
+                    </div>
+                    <!-- Convenor 3 -->
+                    <div class="text-center hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                        <div class="w-32 h-32 mx-auto bg-gray-700 rounded-full mb-3 flex items-center justify-center text-gray-400">Photo</div>
+                        <p class="font-bold text-black">Mrs. SUJITHA S K</p>
+                        <p class="text-sm text-red-500">HOD-CYBER SECURITY</p>
+                    </div>
+                    <!-- Convenor 4 -->
+                    <div class="text-center hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
+                        <div>
+                            <img src="Sam.jpg" class="w-32 h-32 mx-auto bg-gray-700 rounded-full mb-3 flex items-center justify-center text-gray-400" alt="">
+                        </div>
+                        <p class="font-bold text-black">MR. SAM ELIZER</p>
+                        <p class="text-sm text-red-500">HOD-AIDS</p>
+                    </div>
+                </div>
+                <h3 class="text-3xl font-bold text-blue-500 mb-6 border-t border-gray-700 pt-8">Student Coordinators</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 text-center scroll-animate ">
+                    <!-- Student Coordinators -->
+                    <div class="p-3 bg-gray-800/80 rounded-lg hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate flex flex-col justify-center">
+                        <p class="font-semibold text-white">Siva Subramani V</p>
+                        <p class="text-xs text-emerald-500">President</p>
+                    </div>
+                    <div class="p-3 bg-gray-800/80 rounded-lg hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate flex flex-col justify-center">
+                        <p class="font-semibold text-white">Ramessa Banu</p>
+                        <p class="text-xs text-emerald-500">Vice President</p>
+                    </div>
+                    <div class="p-3 bg-gray-800/80 rounded-lg hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate flex flex-col justify-center">
+                        <p class="font-semibold text-white">Sheik Mythin</p>
+                        <p class="text-xs text-emerald-500">Secretary</p>
+                    </div>
+                    <div class="p-3 bg-gray-800/80 rounded-lg hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate flex flex-col justify-center">
+                        <p class="font-semibold text-white">A N Raja</p>
+                        <p class="text-xs text-emerald-500">Joint Secretary</p>
+                    </div>
+                    <div class="p-3 bg-gray-800/80 rounded-lg hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate flex flex-col justify-center">
+                        <p class="font-semibold text-white">Mahalingam</p>
+                        <p class="text-xs text-emerald-500">Treasurer</p>
+                    </div>
+                    <div class="p-3 bg-gray-800/80 rounded-lg hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate flex flex-col justify-center">
+                        <p class="font-semibold text-white">Nazar Ali</p>
+                        <p class="text-xs text-emerald-500">Joint Treasurer</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Contact Details -->
+            <div class="mt-12 scroll-animate">
+                <h3 class="text-3xl font-bold text-black mb-6">Get in Touch</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Email -->
+                    <div class="backdrop-blur-sm p-6 rounded-xl  border-gray-700 flex flex-col items-start shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                        <img src="gmail.png" class="w-8 h-8 text-black mb-3" alt="Gmail Icon">
+                        <p class="text-sm text-black">Email</p>
+                        <a href="mailto:driftiancse2k25@gmail.com" class="text-lg font-semibold text-stone-900 hover:text-stone-500 transition break-all">driftiancse2k25@gmail.com</a>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=driftiancse2k25@gmail.com" target="_blank" class="mt-2 text-sm text-blue-500 hover:text-blue-400 transition">Open in Gmail &rarr;</a>
+                    </div>
+                    <!-- Instagram -->
+                    <div class="backdrop-blur-sm p-6 rounded-xl border-gray-700 flex flex-col items-start shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                        <img src="instgram.png" class="w-8 h-8 text-black mb-3" alt="">
+                        <p class="text-sm text-black">Instagram</p>
+                        <a href="https://www.instagram.com/2k25csesymposium?igsh=Njd2YW93YmViNDdy&utm_source=qr" target="_blank" class="text-lg font-semibold text-stone-900 hover:text-stone-500 transition">@2k25csesymposium</a>
+                        <span class="mt-2 text-sm text-black">Follow for updates</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Location Section -->
+            <div class="mt-16  backdrop-blur-sm p-8 rounded-xl shadow-xl border-gray-700 scroll-animate text-center">
+                <h3 class="text-2xl font-bold text-black mb-6">Nellai College of Engineering, Maruthakulam</h3>
+                <div class="h-48 rounded-lg flex items-center justify-center text-gray-300 font-semibold text-lg  transition duration-300 cursor-pointer scroll-animate">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.075206059138!2d77.711249!3d8.588768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b046da601e62be1%3A0x609d1f57485761f2!2sNellai%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1760157795039!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            
+            <div>
+                <div class="mt-16  backdrop-blur-sm p-8 rounded-xl shadow-xl border-gray-700 scroll-animate text-center">
+                    <h4 class="text-xl font-bold text-black mb-2 flex text-center justify-center items-center">
+                         Bus Route
+                    </h4>
+                    <a href="placeholder_brochure.pdf" target="_blank" class="bg-gray-700/80 hover:bg-gray-600/80 text-white font-bold py-3 px-8 rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 inline-flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Bus Route Download 
+                    </a>
+                    <p class="text-black mt-12">The campus is a short walk from the stop.</p>
+                </div>
+            </div>
+            <!-- Web Developer -->
+            <div class="mt-12 text-center text-black border-t border-gray-800 pt-8 scroll-animate">
+                <h4 class="text-lg font-bold mb-4">Web Developers </h4>
+                <p>M.Thanush</p>
+                <p>Akash Kannan</p>
+                <p>Abdul Haadhi</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class=" backdrop-blur-sm border-t border-gray-700 py-6">
+        <div class=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-black">
+            &copy; 2025 DRIFTIAN 2K`25 . A Symposium by Final Year Students of Computer Science (B.E).
+            <p>Contact:  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=driftiancse2k25@gmail.com" target="_blank" class="mt-2 text-sm text-black hover:text-blue-400 transition">driftiancse2k25@gmail.com</a>  | +91 86102 65146 </p>
+        </div>
+    </footer>
+
+    <!-- Registration Modal -->
+    <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 transition-opacity duration-300">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="backdrop-blur-md p-4 sm:p-6 rounded-xl shadow-2xl max-w-2xl w-full relative animate-fade-in-up">
+                <button class="absolute top-4 right-4 text-gray-400 hover:text-white" onclick="document.getElementById('registerModal').classList.add('hidden')">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <h3 class="text-2xl sm:text-3xl font-bold text-emerald-500 mb-4">Event Registration</h3>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMYX9D8pAVgNviJszxUAJMfpLzivqsRH-JwpOZNypFNE-Xtw/viewform" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Loading…</iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Details Modal -->
+    <div id="eventDetailsModal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 transition-opacity duration-300">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="backdrop-blur-md p-4 sm:p-6 rounded-xl shadow-2xl max-w-2xl w-full relative animate-fade-in-up text-black">
+                <button id="closeEventDetailsModal" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <h3 id="eventModalTitle" class="text-2xl sm:text-3xl font-bold text-emerald-500 mb-4">Event Details</h3>
+                <img id="eventModalImage" class="w-full" src="event detail.jpg" alt="Event Image">
+                <div id="eventModalContent" class="text-white"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Event listeners for Navigation and Modal
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const registerButton = document.getElementById('registerButton');
+            const registerModal = document.getElementById('registerModal');
+            const eventDetailsModal = document.getElementById('eventDetailsModal');
+            const closeEventDetailsModal = document.getElementById('closeEventDetailsModal');
+            const eventModalTitle = document.getElementById('eventModalTitle');
+            const evevtModalImage = document.getElementById('eventModalImage');
+            const eventDetailButtons = document.querySelectorAll('.event-details-btn');
+
+            // Toggle mobile menu
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Show registration modal
+            registerButton.addEventListener('click', () => {
+                registerModal.classList.remove('hidden');
+            });
+
+            // Close modal when clicking outside
+            registerModal.addEventListener('click', (e) => {
+                if (e.target === registerModal) {
+                    registerModal.classList.add('hidden');
+                }
+            });
+
+            // Close modal on link clicks inside mobile menu
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Event Details Modal Logic
+            eventDetailButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const title = button.getAttribute('data-title');
+                    eventModalTitle.textContent = `${title}`;
+                    eventModalContent.innerHTML = '';
+                    eventDetailsModal.classList.remove('hidden');
+                });
+            });
+
+            closeEventDetailsModal.addEventListener('click', () => {
+                eventDetailsModal.classList.add('hidden');
+            });
+
+            eventDetailsModal.addEventListener('click', (e) => {
+                if (e.target === eventDetailsModal) {
+                    eventDetailsModal.classList.add('hidden');
+                }
+            });
+
+            // Scroll Animation Logic
+            const scrollElements = document.querySelectorAll('.scroll-animate');
+
+            const elementInView = (el, dividend = 1) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+                );
+            };
+
+            const displayScrollElement = (element) => {
+                element.classList.add('is-visible');
+            };
+
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 1.25)) {
+                        displayScrollElement(el);
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            });
+            // Trigger on load as well
+            handleScrollAnimation();
+
+        });
+    </script>
+</body>
+</html>
