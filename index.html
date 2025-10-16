@@ -47,7 +47,7 @@
         .scroll-animate {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.10s ease-out, transform 0.10s ease-out;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         .scroll-animate.is-visible {
             opacity: 1;
@@ -99,9 +99,9 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
 
         <!-- Hero Section -->
-        <section id="home" class="text-center pt-8 pb-16 md:pt-12 md:pb-24">
+        <section id="home" class="text-center pt-8 pb-16 md:pt-12 md:pb-24 scroll-animate">
             <div class="flex justify-center mb-6 scroll-animate">
-                <div class=" w-full max-w-2xl h-96 md:h-[30rem] flex items-center justify-center">
+                <div class=" w-full max-w-2xl h-96 md:h-[30rem] flex items-center justify-center scroll-animate">
                     <img src="logo4.png" alt="Driftian Logo" class="max-w-full max-h-full object-contain">
                 </div>
             </div>
@@ -127,7 +127,7 @@
                 </div>
                 <div class="backdrop-blur-sm p-6 rounded-xl shadow-2xl w-full sm:w-1/6 text-center hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 scroll-animate">
                     <h2 class="text-xl font-semibold mb-4 text-black">Department</h2>
-                    <p class="text-sm font-bold text-black">CSE</p>
+                    <p class="text-sm font-bold text-black">CSE | Cyber Security | AI & DS</p>
                 </div>
             </div>
 
@@ -148,7 +148,7 @@
         </section>
 
         <!-- Events Section -->
-        <section id="events" class="py-16 md:py-20">
+        <section id="events" class="py-16 md:py-20 scroll-animate">
             <!-- <h2 class="section-title text-white scroll-animate">Events</h2> -->
             <h2 class="section-title text-black scroll-animate mt-8">Technical Events</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -164,7 +164,7 @@
                     </div>
                     <div class="text-center text-black">
                      <p>Participants are required to present a paper on any technical topic of their choice.
-                       <p>Team Size: Maximum 3 members</p> 
+                       <p>Team Size: Maximum 2 members</p> 
                         Duration: 10 minutes (including Q&A, if any)</p>
                     <button class="event-details-btn text-black font-semibold hover:text-red-500 transition duration-300"
                         data-title="Paper Presentation">Details &rarr;</button>
@@ -296,7 +296,7 @@
             </div>
         </section>
         <!-- About Section -->
-        <section id="about" class="py-16 md:py-24">
+        <section id="about" class="py-16 md:py-24 scroll-animate">
             <h2 class="section-title text-black scroll-animate">About The Department</h2>
             <div class="grid grid-cols-1 gap-8 backdrop-blur-sm p-8 rounded-xl shadow-xl border-gray-700 scroll-animate">
                 <div>
@@ -332,7 +332,7 @@
             </div>
         </section>
         <!-- Contact and Coordinators Section -->
-        <section id="contact" class="py-16 md:py-24">
+        <section id="contact" class="py-16 md:py-24 scroll-animate">
             <h2 class="section-title text-black scroll-animate">Meet the Team</h2>
             <!-- Coordinators Grid -->
             <div class="backdrop-blur-sm p-8 rounded-xl shadow-xl border-gray-700 hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2">
@@ -416,9 +416,14 @@
                         <span class="mt-2 text-sm text-black">Follow for updates</span>
                     </div>
                     <div class="bg-gray-700 backdrop-blur-sm p-6 rounded-xl border-gray-700 flex flex-col items-start shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                        <p class="text-white font-bold">If Any Technical issues Contact Immediately!</p>
-                            <p>Name: Akash Kannan No: 9821710091</p>
+                        <p class="text-white font-bold">For any clarification Contact Student Coordinators</p>
+                            <p class="mt-4">Name: Akash Kannan No: 9821710091</p>
                             <p>Name: M.Thanush  No: 6379295388</p>
+                    </div>
+                    <div class="bg-gray-700 backdrop-blur-sm p-6 rounded-xl border-gray-700 flex flex-col items-start shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                        <p class="text-white font-bold">For any clarification in Payment Contact Treasurer Team</p>
+                            <p class="mt-4">Name: Nazar  No: 7339534705 </p>
+                            <p>Name: A.N.Raja No: 6381446282</p>
                     </div>
                 </div>
             </div>
