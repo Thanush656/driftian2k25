@@ -19,12 +19,14 @@
         body {
             font-family: 'Inter', sans-serif;
             color: var(--bg-light);
-            scroll-behavior:smooth;
             /* Add your background image here */
             background-image: url('background7.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+        }
+        html {
+            scroll-behavior: smooth;
         }
         .section-title {
             position: relative;
@@ -59,12 +61,12 @@
 <body class="antialiased">
 
     <!-- Navbar -->
-    <nav id="navbar" class=" backdrop-blur-sm sticky top-0 z-50 shadow-lg scroll-animate">
+    <nav id="navbar" class=" backdrop-blur-sm sticky top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <span class="text-xl font-extrabold tracking-wider text-emerald-500">
-                        <img src="logo.png" class="h-20 w-auto" alt="" >
+                        <img src="logo4.png" class="h-20 w-auto" alt="" >
                     </span>
                     <!-- <span>Driftian</span> -->
                 </div>
@@ -559,14 +561,22 @@
                 );
             };
 
+            const hideScrollElement = (element) => {
+                element.classList.remove('is-visible');
+            };
+
             const displayScrollElement = (element) => {
                 element.classList.add('is-visible');
             };
 
             const handleScrollAnimation = () => {
                 scrollElements.forEach((el) => {
-                    if (elementInView(el, 1.25)) {
+                    // Check if the element is in view
+                    if (el.getBoundingClientRect().top < window.innerHeight && el.getBoundingClientRect().bottom > 0) {
                         displayScrollElement(el);
+                    } else {
+                        // If you want elements to fade out and reset when they leave the screen
+                        hideScrollElement(el);
                     }
                 });
             };
